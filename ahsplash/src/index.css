@@ -6,9 +6,36 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #0d2dff;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+
+.container {
+	display: table;
+	height: 100%;
+	color: white;
+  }
+  
+  .anthoodLogo {
+	  margin-bottom: -60px;
+  }
+  
+  #centering {
+	display: table-cell;
+	vertical-align: middle;
+	float: none;
+	text-align: center;
+  }
+  #centering img {
+	margin: 0 auto;
+	height: auto;
+	width: auto;
+	width: 100%;
+	max-width: 100%;
+  }
