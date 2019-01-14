@@ -16,26 +16,15 @@ code {
 
 
 
-.container {
-	display: table;
-	height: 100%;
-	color: white;
+.hero {
+	height: 100vh;
+}
+  
+  #logo {
+	width: 50%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
   }
   
-  .anthoodLogo {
-	  margin-bottom: -60px;
-  }
-  
-  #centering {
-	display: table-cell;
-	vertical-align: middle;
-	float: none;
-	text-align: center;
-  }
-  #centering img {
-	margin: 0 auto;
-	height: auto;
-	width: auto;
-	width: 100%;
-	max-width: 100%;
-  }

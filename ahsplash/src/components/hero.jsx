@@ -3,14 +3,14 @@ import logo from '../logo.svg';
 
 
 class Hero extends Component {
-	state = {  }
+
 	render() { 
 		return ( 
-			<React.Fragment>
+			<div className="hero">
 				<a href="mailto:info@anthood.com">
-					<img src={logo} alt="Anthood logo" />
+					<img src={logo} id="logo" alt="Anthood logo" />
 				</a>
-			</React.Fragment>
+			</div>
 		);
 	}
 }
