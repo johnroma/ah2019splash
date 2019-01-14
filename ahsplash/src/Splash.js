@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Hero from './hero'
+import Hero from './components/hero'
+import Logowall from "./components/logowall";
 
 class Splash extends Component {
 	state = {  }
@@ -7,7 +8,7 @@ class Splash extends Component {
 		return (
 			<React.Fragment>
 				<Hero />
-				<h1>Hello world</h1>
+				<Logowall />
 			</React.Fragment>
 		);
 	}
