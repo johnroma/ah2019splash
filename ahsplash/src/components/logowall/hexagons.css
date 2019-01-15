@@ -1,0 +1,141 @@
+#hexGrid {
+	margin-block-start: 0;
+	margin-block-end: 0;
+	padding-inline-start: 0;
+	display: grid;
+	grid-gap: 1px;
+	grid-template-columns: repeat(10, 1fr);
+	grid-template-rows: auto;
+´	margin:0 auto;
+	list-style-type: none;
+	overflow: hidden;
+	padding:20px;
+}
+
+.hex {
+	grid-column-end: span 2;
+	height:120px;
+	position: relative;
+	/* visibility: hidden; */
+	outline: 1px solid transparent;
+	/* fix for jagged edges in FF on hover transition */
+	overflow: hidden;
+}
+
+/* .hex::after {
+	content: '';
+	display: block;
+	padding-bottom: 86.602%;
+	background:pink; */
+	/* =  100 / tan(60) * 1.5 */
+/* } */
+
+.hexIn {
+	position: absolute;
+	width: 100%;
+	padding-bottom: 115.470%;
+	/* =  width / sin(60) */
+	overflow: hidden;
+	/* visibility: hidden; */
+	outline: 1px solid transparent;
+	/* fix for jagged edges in FF on hover transition */
+	/* -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+	-ms-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+	transform: rotate3d(0, 0, 1, -60deg) skewY(30deg); */
+}
+
+.hexIn * {
+	position: absolute;
+	/* visibility: visible; */
+	outline: 1px solid transparent;
+	/* fix for jagged edges in FF on hover transition */
+}
+
+.hexLink {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #fff;
+	overflow: hidden;
+	/* -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+	-ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+	transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg); */
+}
+
+/*** HEX CONTENT **********************************************************************/
+.hex img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+	
+	/* -webkit-transform: rotate3d(0, 0, 0, 0deg);
+	-ms-transform: rotate3d(0, 0, 0, 0deg);
+	transform: rotate3d(0, 0, 0, 0deg); */
+}
+
+
+/*** HEXAGON SIZING AND EVEN ROW INDENTATION *****************************************************************/
+
+@media (min-width:1201px) {
+
+	/* <- 5-4  hexagons per row */
+	#hexGrid {
+		padding-bottom: 4.4%;
+	}
+
+	.hex:nth-child(9n+6) {
+		/* first hexagon of even rows */
+		grid-column-start: 2;
+	}
+}
+
+@media (max-width: 1200px) and (min-width:901px) {
+
+	/* <- 4-3  hexagons per row */
+	#hexGrid {
+		grid-template-columns: repeat(8, 1fr);
+		padding-bottom: 5.5%;
+	}
+
+	.hex {
+		height:150px;
+	}
+	.hex:nth-child(7n+5) {
+		/* first hexagon of even rows */
+		grid-column-start: 2;
+	}
+}
+
+@media (max-width: 900px) and (min-width:601px) {
+
+	/* <- 3-2  hexagons per row */
+	#hexGrid {
+		grid-template-columns: repeat(6, 1fr);
+		padding-bottom: 7.4%;
+	}
+
+	
+	.hex:nth-child(5n+4) {
+		/* first hexagon of even rows */
+		grid-column-start: 2;
+	}
+}
+
+@media (max-width: 600px) {
+
+	/* <- 2-1  hexagons per row */
+	#hexGrid {
+		grid-template-columns: repeat(4, 1fr);
+		padding-bottom: 11.2%;
+		grid-gap: 5px;
+	}
+
+	.hex {
+		height:90px;
+	}
+	.hex:nth-child(3n+3) {
+		/* first hexagon of even rows */
+		grid-column-start: 2;
+	}
+}

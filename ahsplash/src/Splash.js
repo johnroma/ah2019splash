@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Hero from './components/hero'
-import Logowall from "./components/logowall";
+import Logowall from "./components/logowall/logowall";
 
 class Splash extends Component {
 	state = {  }
