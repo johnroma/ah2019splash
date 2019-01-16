@@ -22,46 +22,10 @@
 	overflow: hidden;
 }
 
-/* .hex::after {
-	content: '';
-	display: block;
-	padding-bottom: 86.602%;
-	background:pink; */
-	/* =  100 / tan(60) * 1.5 */
-/* } */
 
-.hexIn {
-	position: absolute;
-	width: 100%;
-	padding-bottom: 115.470%;
-	/* =  width / sin(60) */
-	overflow: hidden;
-	/* visibility: hidden; */
-	outline: 1px solid transparent;
-	/* fix for jagged edges in FF on hover transition */
-	/* -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
-	-ms-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
-	transform: rotate3d(0, 0, 1, -60deg) skewY(30deg); */
-}
 
-.hexIn * {
-	position: absolute;
-	/* visibility: visible; */
-	outline: 1px solid transparent;
-	/* fix for jagged edges in FF on hover transition */
-}
 
-.hexLink {
-	display: block;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	color: #fff;
-	overflow: hidden;
-	/* -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-	-ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-	transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg); */
-}
+
 
 /*** HEX CONTENT **********************************************************************/
 .hex img {
