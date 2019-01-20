@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './hexagons.css';
+import './logowall.css';
 
 class Logowall extends Component {
 

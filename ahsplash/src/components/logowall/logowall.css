@@ -6,7 +6,7 @@
 	grid-gap: 1px;
 	grid-template-columns: repeat(10, 1fr);
 	grid-template-rows: auto;
-´	margin:0 auto;
+	margin:0 auto;
 	list-style-type: none;
 	overflow: hidden;
 	padding:20px;
