@@ -4,9 +4,7 @@ const LogoWallItem = (props) => {
 	const { src, alt } = props;
 	return (
 		<li className="hex" >
-
-		
-				<img src={src} alt={alt} />
+			<img src={src} alt={alt} />
 		</li>
 	  );
 }
