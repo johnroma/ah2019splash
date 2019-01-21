@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './logowall.css';
-import { getBrands } from "../../services/brandListService";
-import LogoWallItem from './logowallItem'
+import { getBrands } from "../../services/clientsList";
+import LogoWallItem from './logowallItem';
 
 class Logowall extends Component {
 
@@ -13,7 +13,7 @@ class Logowall extends Component {
 		return (
 		<ul id="hexGrid">
 		{
-			this.state.logosrc.map( (pos, id) => <LogoWallItem src={pos.src} key={id} alt={pos.src} /> )
+			this.state.logosrc.map( (pos, id) => <LogoWallItem src={"images/logowall/"+pos.src} key={id} alt={pos.src} /> )
 		}
 		</ul>
 		);
