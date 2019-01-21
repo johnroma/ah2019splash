@@ -1,4 +1,4 @@
-#hexGrid {
+.hexGrid {
 	margin-block-start: 0;
 	margin-block-end: 0;
 	padding-inline-start: 0;
@@ -44,7 +44,7 @@
 @media (min-width:1201px) {
 
 	/* <- 5-4  hexagons per row */
-	#hexGrid {
+	.hexGrid {
 		padding-bottom: 4.4%;
 	}
 
@@ -57,7 +57,7 @@
 @media (max-width: 1200px) and (min-width:901px) {
 
 	/* <- 4-3  hexagons per row */
-	#hexGrid {
+	.hexGrid {
 		grid-template-columns: repeat(8, 1fr);
 		padding-bottom: 5.5%;
 	}
@@ -74,7 +74,7 @@
 @media (max-width: 900px) and (min-width:601px) {
 
 	/* <- 3-2  hexagons per row */
-	#hexGrid {
+	.hexGrid {
 		grid-template-columns: repeat(6, 1fr);
 		padding-bottom: 7.4%;
 	}
@@ -89,7 +89,7 @@
 @media (max-width: 600px) {
 
 	/* <- 2-1  hexagons per row */
-	#hexGrid {
+	.hexGrid {
 		grid-template-columns: repeat(4, 1fr);
 		padding-bottom: 11.2%;
 		grid-gap: 5px;
