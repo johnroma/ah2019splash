@@ -12,6 +12,7 @@
 	padding:20px;
 }
 
+
 .hex {
 	grid-column-end: span 2;
 	height:120px;
@@ -25,6 +26,16 @@
 
 
 
+/* .hex:nth-child(7n+5):nth-last-child(-n+1) {
+	grid-column-start: 4;
+}
+.hex:nth-child(7n+1):nth-last-child(-n+2) {
+	grid-column-start: 3;
+}
+.hex:nth-child(7n+1):nth-last-child(-n+1) {
+	grid-column-start: 4;
+} */
+
 
 
 /*** HEX CONTENT **********************************************************************/
@@ -32,10 +43,6 @@
     object-fit: contain;
     height: 100%;
     width: 100%;
-	
-	/* -webkit-transform: rotate3d(0, 0, 0, 0deg);
-	-ms-transform: rotate3d(0, 0, 0, 0deg);
-	transform: rotate3d(0, 0, 0, 0deg); */
 }
 
 
@@ -52,6 +59,38 @@
 		/* first hexagon of even rows */
 		grid-column-start: 2;
 	}
+
+
+
+
+	.hex:nth-child(9n+6):nth-last-child(-n+3) {
+		grid-column-start: 3;
+	}
+
+	.hex:nth-child(9n+6):nth-last-child(-n+2) {
+		grid-column-start: 4;
+	}
+
+	.hex:nth-child(9n+6):nth-last-child(-n+1) {
+		grid-column-start: 5;
+	}
+
+	.hex:nth-child(9n+1):nth-last-child(-n+4) {
+		grid-column-start: 2;
+	}
+	.hex:nth-child(9n+1):nth-last-child(-n+3) {
+		grid-column-start: 3;
+	}
+	.hex:nth-child(9n+1):nth-last-child(-n+2) {
+		grid-column-start: 4;
+	}
+
+	.hex:nth-child(9n+1):nth-last-child(-n+1) {
+		grid-column-start: 5;
+	}
+	/* .hex:nth-child(7n+1):nth-last-child(-n+1) {
+		grid-column-start: 4;
+	}  */
 }
 
 @media (max-width: 1200px) and (min-width:901px) {
@@ -62,12 +101,10 @@
 		grid-template-columns: repeat(8, 1fr);
 		padding-bottom: 5.5%;
 		margin: 11px;
-		background: rebeccapurple;
 	}
 
 	.hex {
 		height:150px;
-		border: 1px black dotted;
 	}
 	
 	.hex:nth-child(7n+5) {
@@ -102,6 +139,19 @@
 		/* first hexagon of even rows */
 		grid-column-start: 2;
 	}
+
+	.hex:nth-child(5n+4):nth-last-child(-n+1) {
+		grid-column-start: 3;
+	}
+	
+	.hex:nth-child(5n+1):nth-last-child(-n+2) {
+		grid-column-start: 2;
+	}
+	.hex:nth-child(5n+1):nth-last-child(-n+1) {
+		grid-column-start: 3;
+	}
+
+
 }
 
 @media (max-width: 600px) {
@@ -119,5 +169,10 @@
 	.hex:nth-child(3n+3) {
 		/* first hexagon of even rows */
 		grid-column-start: 2;
+	}
+
+
+	.hex:nth-child(3n+1):nth-last-child(-n+1) {
+		grid-column-start: 2; 
 	}
 }
