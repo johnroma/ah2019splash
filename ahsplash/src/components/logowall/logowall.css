@@ -58,16 +58,34 @@
 
 	/* <- 4-3  hexagons per row */
 	.hexGrid {
+
 		grid-template-columns: repeat(8, 1fr);
 		padding-bottom: 5.5%;
+		margin: 11px;
+		background: rebeccapurple;
 	}
 
 	.hex {
 		height:150px;
+		border: 1px black dotted;
 	}
+	
 	.hex:nth-child(7n+5) {
 		/* first hexagon of even rows */
 		grid-column-start: 2;
+	}
+
+	.hex:nth-child(7n+5):nth-last-child(-n+2) {
+		grid-column-start: 3;
+	}
+	.hex:nth-child(7n+5):nth-last-child(-n+1) {
+		grid-column-start: 4;
+	}
+	.hex:nth-child(7n+1):nth-last-child(-n+2) {
+		grid-column-start: 3;
+	}
+	.hex:nth-child(7n+1):nth-last-child(-n+1) {
+		grid-column-start: 4;
 	}
 }
 
