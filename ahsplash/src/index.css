@@ -37,3 +37,11 @@ code {
   #logowall > div  {
 	  border: 1px solid black;
   }
+
+  .fade-transition{
+    transition: opacity 2s;
+}
+.fade-entering,
+.fade-exiting{
+    opacity: 0;
+}
