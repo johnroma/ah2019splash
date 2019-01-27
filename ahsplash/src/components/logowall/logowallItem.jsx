@@ -1,9 +1,10 @@
 import React from 'react';
 
+
 const LogoWallItem = (props) => {
-	const { src, alt } = props;
+	const { src, alt, transClass } = props;
 	return (
-		<li className="hex" >
+		<li className={`hex ${transClass}`} >
 			<img src={src} alt={alt} />
 		</li>
 	  );

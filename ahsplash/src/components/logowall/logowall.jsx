@@ -1,19 +1,72 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './logowall.css';
 import LogoWallItem from './logowallItem';
+import { Transition } from 'react-transition-group';
 
+class LogoWall extends Component {
+	constructor(props) {
+		super(props);
 
-const Logowall = props => {
-
-	const { src } = props;
-	return (
-		<ul className="hexGrid">
-		{
-			src.map( (pos, id) => <LogoWallItem src={"images/logowall/"+pos.src} key={id} alt={pos.src} /> )
+		props.src.forEach(sr => sr.in=false );
+		
+		this.state = {
+			srcs : props.src,
+			brandsin: 0
 		}
-		</ul>
-	);
-};
+	}
 
- 
-export default Logowall;
+	componentWillMount(){
+		this.timerInterval = setInterval( () => this.timerCall() , 100);
+	}
+
+	animIn(){
+		let { srcs } =  this.state ;
+		srcs[ this.state.brandsin ].in = true;		
+	}
+	
+	timerCall() {
+		console.log('df', this.state.brandsin );
+		
+		if (this.state.brandsin == this.state.srcs.length)
+			clearInterval( this.timerInterval );
+		else {
+			this.animIn();	
+			this.setState({ brandsin: this.state.brandsin+1});
+		}
+			
+	}
+	
+	transWrap(p,i) {
+		return (
+		<Transition 
+		key={ "trans"+i }
+		in={ this.state.srcs[i].in }
+		timeout={ 1000 }
+		>{
+			( status ) => {
+				return (
+				<LogoWallItem
+					src={`images/logowall/${p.src}`} key={i} alt={p.alt}
+					transClass={ 'fade-transition fade-' + status }>
+					</LogoWallItem>
+				);
+			}
+		}
+			
+		</Transition>);
+	}
+
+	render() {
+		
+		return (
+			<ul className="hexGrid">
+			{
+				this.state.srcs.map( (pos, id) => this.transWrap(pos,id) )
+			}
+			</ul>
+		);
+	}
+	
+
+}
+ export default LogoWall;

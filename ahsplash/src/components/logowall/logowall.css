@@ -176,3 +176,17 @@
 		grid-column-start: 2; 
 	}
 }
+
+
+.fade-transition{
+    transition: opacity 1s;
+}
+.fade-exited {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.fade-entering,
+.fade-exiting{
+    opacity: 0;
+}
