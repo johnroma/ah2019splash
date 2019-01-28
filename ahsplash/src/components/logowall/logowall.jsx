@@ -11,13 +11,25 @@ class LogoWall extends Component {
 		
 		this.state = {
 			srcs : props.src,
-			brandsin: 0
+			brandsin: 0,
+			animStarted: false
 		}
 	}
 
-	componentWillMount(){
-		this.timerInterval = setInterval( () => this.timerCall() , 100);
+	componentDidMount(){
+		// this.timerInterval = setInterval( () => this.timerCall() , 100);
 	}
+
+
+
+	 componentDidUpdate() {
+	
+		if (this.props.scrollPast && !this.state.animStarted) {
+			
+			this.timerInterval = setInterval( () => this.timerCall() , 100);
+			this.setState({ animStarted:true });
+		}
+	  }
 
 	animIn(){
 		let { srcs } =  this.state ;
@@ -25,7 +37,7 @@ class LogoWall extends Component {
 	}
 	
 	timerCall() {
-		console.log('df', this.state.brandsin );
+		// console.log('df', this.state.brandsin );
 		
 		if (this.state.brandsin == this.state.srcs.length)
 			clearInterval( this.timerInterval );
@@ -48,7 +60,7 @@ class LogoWall extends Component {
 				<LogoWallItem
 					src={`images/logowall/${p.src}`} key={i} alt={p.alt}
 					transClass={ 'fade-transition fade-' + status }>
-					</LogoWallItem>
+				</LogoWallItem>
 				);
 			}
 		}
