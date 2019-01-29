@@ -18,7 +18,7 @@ class Splash extends Component {
     }
 
 	componentDidMount() {
-	const settings = {triggerElement: "#trigger", triggerHook: 0.8,};
+	const settings = {triggerElement: "#trigger", triggerHook: 0.9,};
 
 	this.scene = new ScrollMagic.Scene( settings )
 					.addTo(this.controller)
@@ -32,9 +32,14 @@ class Splash extends Component {
 	render() { 
 		return (
 			<React.Fragment>
-				<div id="trigger" style={{background:"red", position: "absolute", top: "100vh"}}/>
+				
+				<a href="mailto:info@anthood.com" class="contact">info@anthood.com</a>
 				<Hero />
-				<p>Some client references...</p>
+				<h2 className="title-refs">Some client references...</h2>
+				<div id="trigger" style={{ position: "absolute", top: "100vh"}}/>
+				<div className="arrow_holder">
+					<i className="fas fa-arrow-down see_more"></i>
+				</div>
 				<Logowall scrollPast={this.state.scrollPast} src={this.state.clientLogos} />
 				<p>and some of the agencies we work close with...</p>
 				<Logowall scrollPast={this.state.scrollPast} src={this.state.partnerLogos} />

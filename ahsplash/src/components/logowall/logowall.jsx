@@ -37,9 +37,8 @@ class LogoWall extends Component {
 	}
 	
 	timerCall() {
-		// console.log('df', this.state.brandsin );
 		
-		if (this.state.brandsin == this.state.srcs.length)
+		if (this.state.brandsin === this.state.srcs.length)
 			clearInterval( this.timerInterval );
 		else {
 			this.animIn();	

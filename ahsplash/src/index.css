@@ -16,31 +16,50 @@ code {
     monospace;
 }
 
-
+.contact {
+	position: absolute;
+    top: 0px;
+    margin: 20px auto;
+	width: 100%;
+	font-size: 1em;
+	display: block;
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+}
+.title-refs {
+	position: absolute;
+    bottom: 0px;
+    margin: 20px auto;
+	width: 100%;
+	font-size: 1em;
+	display: block;
+}
 
 .hero {
 	height: 100vh;
 }
   
-  #logo {
-	width: 50%;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-  }
-  
-  #logowall {
-	  background: red;
-  }
-
-  #logowall > div  {
-	  border: 1px solid black;
-  }
-
-  .fade-transition{
-    transition: opacity 2s;
+#logo {
+	width: 70%;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
 }
+
+#logowall {
+	background: red;
+}
+
+#logowall > div  {
+	border: 1px solid black;
+}
+
+.fade-transition{
+	transition: opacity 2s;
+}
+
 .fade-entering,
 .fade-exiting{
     opacity: 0;
