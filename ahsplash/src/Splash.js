@@ -13,7 +13,7 @@ class Splash extends Component {
         this.state = {
 			clientLogos: clientLogos(),
 			partnerLogos: partnerLogos(),
-			scrollPast: false
+			scrollTrigger: false
         };
     }
 
@@ -26,23 +26,23 @@ class Splash extends Component {
 					.on("update", (e)=>{
 						// console.log(e.target.controller().info("scrollDirection"));
 					})
-					.on("start", (e)=> this.setState( { scrollPast:true }))
+					.on("start", (e)=> this.setState( { scrollTrigger:true }))
 	}
 	
 	render() { 
 		return (
 			<React.Fragment>
 				
-				<a href="mailto:info@anthood.com" class="contact">info@anthood.com</a>
+				<a href="mailto:info@anthood.com" className="contact">info@anthood.com</a>
 				<Hero />
 				<h2 className="title-refs">Some client references...</h2>
 				<div id="trigger" style={{ position: "absolute", top: "100vh"}}/>
 				<div className="arrow_holder">
 					<i className="fas fa-arrow-down see_more"></i>
 				</div>
-				<Logowall scrollPast={this.state.scrollPast} src={this.state.clientLogos} />
+				<Logowall scrollTrigger={this.state.scrollTrigger} src={this.state.clientLogos} />
 				<p>and some of the agencies we work close with...</p>
-				<Logowall scrollPast={this.state.scrollPast} src={this.state.partnerLogos} />
+				<Logowall src={this.state.partnerLogos} />
 
 			</React.Fragment>
 		);

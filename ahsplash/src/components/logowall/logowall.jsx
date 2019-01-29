@@ -12,8 +12,9 @@ class LogoWall extends Component {
 		this.state = {
 			srcs : props.src,
 			brandsin: 0,
-			animStarted: false
+
 		}
+		if(props.scrollTrigger != null) this.state.animStarted = false;
 	}
 
 	componentDidMount(){
@@ -24,7 +25,10 @@ class LogoWall extends Component {
 
 	 componentDidUpdate() {
 	
-		if (this.props.scrollPast && !this.state.animStarted) {
+		if (this.props.scrollTrigger == null) return
+		
+		if (this.props.scrollTrigger && !this.state.animStarted) {
+			console.log('here');
 			
 			this.timerInterval = setInterval( () => this.timerCall() , 100);
 			this.setState({ animStarted:true });
@@ -72,7 +76,17 @@ class LogoWall extends Component {
 		return (
 			<ul className="hexGrid">
 			{
-				this.state.srcs.map( (pos, id) => this.transWrap(pos,id) )
+				this.state.srcs.map( (pos, id) => {
+					if (this.props.scrollTrigger == null) 
+					{
+						return (
+							<LogoWallItem
+								src={`images/logowall/${pos.src}`} key={id} alt={pos.alt}>
+							</LogoWallItem>
+						)
+					}
+					else return this.transWrap(pos,id);
+				}  )
 			}
 			</ul>
 		);
