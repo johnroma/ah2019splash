@@ -179,7 +179,7 @@
 
 
 .fade-transition{
-    transition: opacity 1s;
+    transition: opacity 0.5s;
 }
 .fade-exited {
 	visibility: hidden;

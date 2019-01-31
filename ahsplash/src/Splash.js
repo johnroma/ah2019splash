@@ -30,8 +30,13 @@ class Splash extends Component {
 	}
 	
 	render() { 
+
+		const { clientLogos } = this.state;
+		clientLogos.in = false;
+		
 		return (
 			<React.Fragment>
+				
 				
 				<a href="mailto:info@anthood.com" className="contact">info@anthood.com</a>
 				<Hero />
@@ -40,7 +45,7 @@ class Splash extends Component {
 				<div className="arrow_holder">
 					<i className="fas fa-arrow-down see_more"></i>
 				</div>
-				<Logowall scrollTrigger={this.state.scrollTrigger} src={this.state.clientLogos} />
+				<Logowall scrollTrigger={this.state.scrollTrigger} src={clientLogos} />
 				<p>and some of the agencies we work close with...</p>
 				<Logowall src={this.state.partnerLogos} />
 

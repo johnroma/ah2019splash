@@ -6,8 +6,6 @@ import { Transition } from 'react-transition-group';
 class LogoWall extends Component {
 	constructor(props) {
 		super(props);
-
-		props.src.forEach(sr => sr.in=false );
 		
 		this.state = {
 			srcs : props.src,
@@ -56,7 +54,8 @@ class LogoWall extends Component {
 		<Transition 
 		key={ "trans"+i }
 		in={ this.state.srcs[i].in }
-		timeout={ 1000 }
+		timeout={ 100 }
+		mountOnEnter
 		>{
 			( status ) => {
 				return (
