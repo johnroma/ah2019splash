@@ -177,6 +177,9 @@
 	}
 }
 
+#partners, #partners-title {
+	visibility: hidden;
+}
 
 .fade-transition{
     transition: opacity 0.5s;

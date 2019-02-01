@@ -10,8 +10,9 @@ class LogoWall extends Component {
 		this.state = {
 			srcs : props.src,
 			brandsin: 0,
-
+			id: props.id
 		}
+
 		if(props.scrollTrigger != null) this.state.animStarted = false;
 	}
 
@@ -25,9 +26,7 @@ class LogoWall extends Component {
 	
 		if (this.props.scrollTrigger == null) return
 		
-		if (this.props.scrollTrigger && !this.state.animStarted) {
-			console.log('here');
-			
+		if (this.props.scrollTrigger && !this.state.animStarted) {			
 			this.timerInterval = setInterval( () => this.timerCall() , 100);
 			this.setState({ animStarted:true });
 		}
@@ -35,7 +34,13 @@ class LogoWall extends Component {
 
 	animIn(){
 		let { srcs } =  this.state ;
-		srcs[ this.state.brandsin ].in = true;		
+		srcs[ this.state.brandsin ].in = true;
+		this.setState({ brandsin: this.state.brandsin+1});
+		
+		
+		this.props.onUpDuration(
+			document.getElementById(this.props.id).clientHeight
+		);
 	}
 	
 	timerCall() {
@@ -44,7 +49,6 @@ class LogoWall extends Component {
 			clearInterval( this.timerInterval );
 		else {
 			this.animIn();	
-			this.setState({ brandsin: this.state.brandsin+1});
 		}
 			
 	}
@@ -66,14 +70,13 @@ class LogoWall extends Component {
 				);
 			}
 		}
-			
 		</Transition>);
 	}
 
 	render() {
 		
 		return (
-			<ul className="hexGrid">
+			<ul className="hexGrid" id={this.state.id}>
 			{
 				this.state.srcs.map( (pos, id) => {
 					if (this.props.scrollTrigger == null) 
