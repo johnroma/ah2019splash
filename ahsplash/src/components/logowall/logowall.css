@@ -177,9 +177,11 @@
 	}
 }
 
-#partners, #partners-title {
+*.hide{
 	visibility: hidden;
 }
+
+
 
 .fade-transition{
     transition: opacity 0.5s;

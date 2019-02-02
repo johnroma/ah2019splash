@@ -6,6 +6,7 @@ import { Transition } from 'react-transition-group';
 class LogoWall extends Component {
 	constructor(props) {
 		super(props);
+		console.log( props);
 		
 		this.state = {
 			srcs : props.src,
@@ -30,23 +31,23 @@ class LogoWall extends Component {
 			this.timerInterval = setInterval( () => this.timerCall() , 100);
 			this.setState({ animStarted:true });
 		}
+
 	  }
 
 	animIn(){
 		let { srcs } =  this.state ;
 		srcs[ this.state.brandsin ].in = true;
 		this.setState({ brandsin: this.state.brandsin+1});
-		
-		
-		this.props.onUpDuration(
-			document.getElementById(this.props.id).clientHeight
-		);
 	}
 	
 	timerCall() {
 		
-		if (this.state.brandsin === this.state.srcs.length)
+		if (this.state.brandsin === this.state.srcs.length){
 			clearInterval( this.timerInterval );
+			this.props.onUpDuration(
+				document.getElementById(this.props.id).clientHeight
+			);
+		}
 		else {
 			this.animIn();	
 		}
@@ -74,9 +75,11 @@ class LogoWall extends Component {
 	}
 
 	render() {
-		
+		let hider = this.props.hider == undefined? "":this.props.hider?"":" hide" ;
+		console.log (hider)
+
 		return (
-			<ul className="hexGrid" id={this.state.id}>
+			<ul className={`hexGrid${hider}`} id={this.state.id}>
 			{
 				this.state.srcs.map( (pos, id) => {
 					if (this.props.scrollTrigger == null) 
