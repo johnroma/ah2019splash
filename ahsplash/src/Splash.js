@@ -21,7 +21,6 @@ class Splash extends Component {
 		};
 		
 		this.handleUpdDuration = this.handleUpdDuration.bind(this);
-		// this.showPartners = this.showPartners.bind(this);
     }
 
 	componentDidMount() {
@@ -30,7 +29,7 @@ class Splash extends Component {
 
 	this.scene = new ScrollMagic.Scene( settings )
 					.addTo(controller)
-					.addIndicators()
+					// .addIndicators()
 					.on("update", (e)=>{
 						// console.log(e.target.controller().info("scrollDirection"));
 					})
