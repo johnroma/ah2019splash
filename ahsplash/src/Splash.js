@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Hero from './components/hero'
 import Logowall from "./components/logowall/logowall";
 import ScrollMagic from 'scrollmagic';
@@ -16,7 +16,7 @@ class Splash extends Component {
 			clientLogos: clientLogos(),
 			partnerLogos: partnerLogos(),
 			scrollTrigger: false,
-			smSettings : { triggerElement: "#trigger", duration: 3000, triggerHook: 0.7 },
+			smSettings : { triggerElement: "#trigger", triggerHook: 0.85 },
 			partnerVisibility: false
 		};
 		
@@ -40,34 +40,27 @@ class Splash extends Component {
 	showPartners() {
 		this.setState( { partnerVisibility: true} );
 
-		console.log('end', this.state.partnerVisibility)
+		// console.log('end', this.state.partnerVisibility)
 	}
 
 	handleUpdDuration (n){
 		
-		this.setState( { smSettings : { triggerElement: "#trigger", duration: n, triggerHook: 0.7 } })
+		this.setState( { smSettings : { ...this.state.smSettings, duration: n} })
 		this.scene.duration(this.state.smSettings.duration);
 
 	}
 
 
-
 	render() { 
 
-		const { clientLogos } = this.state;
-		clientLogos.in = false;
+		const { clientLogos, partnerLogos, scrollTrigger, partnerVisibility } = this.state;
 		
-		let showHide;
-
-		if (!this.state.partnerVisibility) {
-			showHide = 'hide';
-		  } else {
-			showHide = '';
-		  }
+		let showHide = !partnerVisibility? 'hide':'';
+		
 		
 
 		return (
-			<React.Fragment>
+			<Fragment>
 				
 				<a href="mailto:info@anthood.com" className="contact">info@anthood.com</a>
 				<Hero />
@@ -76,11 +69,11 @@ class Splash extends Component {
 				<div className="arrow_holder">
 					<i className="fas fa-arrow-down see_more"></i>
 				</div>
-				<Logowall onUpDuration={ this.handleUpdDuration } id={"clients"} scrollTrigger={this.state.scrollTrigger} src={clientLogos} />
+				<Logowall onUpDuration={ this.handleUpdDuration } id={"clients"} animItems={scrollTrigger} src={clientLogos} />
 				<p className={ showHide } id="partners-title">and some of the agencies we work close with...</p>
-				<Logowall hider={ this.state.partnerVisibility } id={"partners"} src={this.state.partnerLogos} />
+				<Logowall visibility={ partnerVisibility } id={"partners"} src={partnerLogos} />
 
-			</React.Fragment>
+			</Fragment>
 		);
 	}
 }

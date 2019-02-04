@@ -2,66 +2,72 @@ import React, { Component } from 'react';
 import './logowall.css';
 import LogoWallItem from './logowallItem';
 import { Transition } from 'react-transition-group';
+import PropTypes from 'prop-types'
 
 class LogoWall extends Component {
 	constructor(props) {
 		super(props);
-		console.log( props);
 		
-		this.state = {
-			srcs : props.src,
-			brandsin: 0,
-			id: props.id
+		if(props.animItems!==undefined){
+			this.state = {	
+				srcs : props.src,
+				id: props.id,
+				brandsin: 0,
+				animFinished: false
+			}
+		}
+		else {
+			this.state = {
+				srcs : props.src,
+				id: props.id
+			}
 		}
 
-		if(props.scrollTrigger != null) this.state.animStarted = false;
-	}
-
-	componentDidMount(){
-		// this.timerInterval = setInterval( () => this.timerCall() , 100);
 	}
 
 
-
-	 componentDidUpdate() {
-	
-		if (this.props.scrollTrigger == null) return
-		
-		if (this.props.scrollTrigger && !this.state.animStarted) {			
-			this.timerInterval = setInterval( () => this.timerCall() , 100);
-			this.setState({ animStarted:true });
+	shouldComponentUpdate(newProps, newState) {
+			
+		if(newProps.animItems!== this.props.animItems) {
+			let cln = [...this.state.srcs];
+			cln.forEach( (a) => a.in = false );
+			 this.setState({ srcs:cln });
+			 this.timerInterval = setInterval( () => this.timerCall() , 100);
+			return true;	
 		}
+		else if (newState.src!==this.props.src) return true;
+		else return false;
 
 	  }
 
 	animIn(){
-		let { srcs } =  this.state ;
-		srcs[ this.state.brandsin ].in = true;
-		this.setState({ brandsin: this.state.brandsin+1});
+		let cln = [...this.state.srcs];
+		cln[ this.state.brandsin ].in = true;
+		
+		this.setState( { srcs:cln, brandsin: this.state.brandsin+1 })
 	}
 	
 	timerCall() {
 		
 		if (this.state.brandsin === this.state.srcs.length){
+			
 			clearInterval( this.timerInterval );
-			this.props.onUpDuration(
-				document.getElementById(this.props.id).clientHeight
-			);
+			 this.props.onUpDuration(
+			 	document.getElementById(this.props.id).clientHeight
+			 );
+			this.setState({ animFinished:true });			
 		}
 		else {
-			this.animIn();	
+			 this.animIn();
 		}
 			
 	}
 	
 	transWrap(p,i) {
 		return (
-		<Transition 
-		key={ "trans"+i }
-		in={ this.state.srcs[i].in }
-		timeout={ 100 }
-		mountOnEnter
-		>{
+			
+		<Transition key={ "trans"+i } in={ this.state.srcs[i].in } timeout={ 100 } mountOnEnter>
+		{
 			( status ) => {
 				return (
 				<LogoWallItem
@@ -75,14 +81,13 @@ class LogoWall extends Component {
 	}
 
 	render() {
-		let hider = this.props.hider == undefined? "":this.props.hider?"":" hide" ;
-		console.log (hider)
+		let visibility = this.props.visibility === undefined? "":this.props.visibility?"":" hide" ;
 
 		return (
-			<ul className={`hexGrid${hider}`} id={this.state.id}>
+			<ul className={`hexGrid${visibility}`} id={this.state.id}>
 			{
 				this.state.srcs.map( (pos, id) => {
-					if (this.props.scrollTrigger == null) 
+					if (this.props.animItems === undefined) 
 					{
 						return (
 							<LogoWallItem
@@ -100,3 +105,15 @@ class LogoWall extends Component {
 
 }
  export default LogoWall;
+
+ LogoWall.defaultProps = {
+	visibility: true
+  };
+
+ LogoWall.propTypes = {
+	id: PropTypes.string.isRequired,
+	src: PropTypes.array.isRequired,
+	onUpDuration: PropTypes.func,
+	animItems: PropTypes.bool,
+	visibility: PropTypes.bool
+  };
