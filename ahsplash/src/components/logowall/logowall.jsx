@@ -25,14 +25,13 @@ class LogoWall extends Component {
 
 	}
 
-
 	shouldComponentUpdate(newProps, newState) {
 			
 		if(newProps.animItems!== this.props.animItems) {
 			let cln = [...this.state.srcs];
 			cln.forEach( (a) => a.in = false );
-			 this.setState({ srcs:cln });
-			 this.timerInterval = setInterval( () => this.timerCall() , 100);
+			this.setState({ srcs:cln });
+			this.timerInterval = setInterval( () => this.timerCall() , 100);
 			return true;	
 		}
 		else if (newState.src!==this.props.src) return true;
@@ -48,36 +47,33 @@ class LogoWall extends Component {
 	}
 	
 	timerCall() {
-		
-		if (this.state.brandsin === this.state.srcs.length){
-			
+		if (this.state.brandsin === this.state.srcs.length){	
 			clearInterval( this.timerInterval );
-			 this.props.onUpDuration(
-			 	document.getElementById(this.props.id).clientHeight
-			 );
+			this.props.onUpDuration( document.getElementById(this.props.id).clientHeight);
 			this.setState({ animFinished:true });			
 		}
-		else {
-			 this.animIn();
-		}
-			
+		else this.animIn();	
 	}
 	
+
+
 	transWrap(p,i) {
 		return (
-			
 		<Transition key={ "trans"+i } in={ this.state.srcs[i].in } timeout={ 100 } mountOnEnter>
 		{
-			( status ) => {
-				return (
-				<LogoWallItem
-					src={`images/logowall/${p.src}`} key={i} alt={p.alt}
-					transClass={ 'fade-transition fade-' + status }>
-				</LogoWallItem>
-				);
-			}
+			( status ) => this.getItem(p,i,status)
 		}
 		</Transition>);
+	}
+
+	getItem(p,i,transStatus){
+		
+		return (
+			<LogoWallItem
+					src={`images/logowall/${p.src}`} key={i} alt={p.alt}
+					{...(transStatus? { transClass:'fade-transition fade-' + transStatus }:{})}		
+			/>
+		)
 	}
 
 	render() {
@@ -86,17 +82,7 @@ class LogoWall extends Component {
 		return (
 			<ul className={`hexGrid${visibility}`} id={this.state.id}>
 			{
-				this.state.srcs.map( (pos, id) => {
-					if (this.props.animItems === undefined) 
-					{
-						return (
-							<LogoWallItem
-								src={`images/logowall/${pos.src}`} key={id} alt={pos.alt}>
-							</LogoWallItem>
-						)
-					}
-					else return this.transWrap(pos,id);
-				}  )
+				this.state.srcs.map( (pos, id) => this.props.animItems === undefined? this.getItem(pos,id):this.transWrap(pos,id) )
 			}
 			</ul>
 		);

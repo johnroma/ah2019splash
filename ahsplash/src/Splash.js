@@ -24,8 +24,7 @@ class Splash extends Component {
     }
 
 	componentDidMount() {
-	const settings = this.state.smSettings;
-	const controller = this.state.controller;
+	const {smSettings:settings, controller, partnerVisibility} = this.state;
 
 	this.scene = new ScrollMagic.Scene( settings )
 					.addTo(controller)
@@ -34,7 +33,7 @@ class Splash extends Component {
 						// console.log(e.target.controller().info("scrollDirection"));
 					})
 					.on("start", (e)=> this.setState( { scrollTrigger:true }))
-					.on("end", (e)=> !this.state.partnerVisibility? this.showPartners() : null);
+					.on("end", (e)=> !partnerVisibility? this.showPartners() : null);
 	}
 	
 	showPartners() {
@@ -47,17 +46,13 @@ class Splash extends Component {
 		
 		this.setState( { smSettings : { ...this.state.smSettings, duration: n} })
 		this.scene.duration(this.state.smSettings.duration);
-
 	}
 
 
 	render() { 
 
 		const { clientLogos, partnerLogos, scrollTrigger, partnerVisibility } = this.state;
-		
 		let showHide = !partnerVisibility? 'hide':'';
-		
-		
 
 		return (
 			<Fragment>
